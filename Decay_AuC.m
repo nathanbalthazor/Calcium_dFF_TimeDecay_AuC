@@ -48,14 +48,14 @@ kcl_stopcalc = zeros(num_neurons,2);
 usublabel = cellstr('Substance');
 uvertgap = cellstr('--------------------');
 uneuron = cellstr('Neuron');
-umaxpkstr = cellstr('Peak dF/F');
+umaxpkstr = cellstr('Peak dF/F (%)');
 udecstr = cellstr('Decay times (s)');
 uAoCstr = cellstr('Area under Curve (dF/F)');
 ustartstr1 = cellstr('Time at Peak (s)');
-ustartstr2 = cellstr('dF/F at Peak');
+ustartstr2 = cellstr('dF/F (%) at Peak');
 startnames = [ustartstr1 ustartstr2];
 ustopstr1 = cellstr('Time to Settle (s)');
-ustopstr2 = cellstr('dF/F at Settle (s)');
+ustopstr2 = cellstr('dF/F (%) at Settle (s)');
 stopnames = [ustopstr1 ustopstr2];
 
 %creating time vector from fps and length of files
@@ -276,7 +276,7 @@ for i = 1:1:num_neurons
         titstr = [filenamestr, titstrneuron];
         title(titstr)
         xlabel('Time (s)')
-        ylabel('dF/F')
+        ylabel('dF/F (%)')
         xlim([0 t(end)])
         ylim([0 max(maxes)+0.5])       
         legend('Raw dF/F','Filtered dF/F')
@@ -302,7 +302,7 @@ for i = 1:1:num_neurons
         
         ylim([0 max(maxes)+0.5])
         xlabel('Time (s)')
-        ylabel('dF/F')
+        ylabel('dF/F (%)')
         
         legendstr(i) = sprintf('Neuron %.0f',i);
     else
@@ -347,7 +347,7 @@ if num_neurons > 1
     statsstr = [filenamestr ': Mean +/- 1 STD Overlay'];
     title(statsstr)
     xlabel('Time (s)')
-    ylabel('dF/F')
+    ylabel('dF/F (%)')
     xlim([0 t(end)])   
     ylim([0 max(maxes)+0.5])
     saveas(gcf,[folderpath '\' filenamestr ' Mean+StDev Figure' '.png']);
